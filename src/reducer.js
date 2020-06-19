@@ -17,9 +17,10 @@ export default function reducer(state, actions) {
       return { ...state, countryListByName };
 
     case "FILTER_BY_REGION":
+      debugger;
       const { regionSelected } = actions.payload;
 
-      if ("" === regionSelected) {
+      if (regionSelected === "") {
         return { ...state, countryFilteredByRegion: [], filterByRegion: "" };
       }
 

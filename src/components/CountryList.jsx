@@ -3,13 +3,17 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
 import Country from "./Country";
+import Wrapper from "./Wrapper";
 
 const CountryListStyled = styled.div`
   display: grid;
   grid-row-gap: 2.3em;
+  grid-auto-flow: columns;
+  grid-column-gap: 75px;
+  grid-template-columns: repeat(auto-fill, 270px);
   justify-content: center;
   background: var(--background);
-  padding: 4em 2em;
+  padding: 3em 0;
 `;
 
 function CountryList() {
@@ -41,19 +45,22 @@ function CountryList() {
       });
   }, [dispatch]);
   return (
-    <CountryListStyled>
-      {countryList &&
-        countryList.map((country, index) => (
-          <Country
-            key={index}
-            flag={country.flag}
-            name={country.name}
-            population={country.population}
-            region={country.region}
-            capital={country.capital}
-          />
-        ))}
-    </CountryListStyled>
+    <Wrapper>
+      <CountryListStyled>
+        {countryList &&
+          countryList.map((country, index) => (
+            <Country
+              key={index}
+              flag={country.flag}
+              name={country.name}
+              population={country.population}
+              region={country.region}
+              capital={country.capital}
+              alpha2Code={country.alpha2Code}
+            />
+          ))}
+      </CountryListStyled>
+    </Wrapper>
   );
 }
 
